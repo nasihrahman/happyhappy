@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>bbbbbbbbb</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 1. Entrance quiz -->
+<section id="gate">
+  <div class="card">
+    <p class="eyebrow" id="gate-intro"></p>
+    <h1 id="q-text"></h1>
+    <div class="answer" id="q-answer">
+      <div id="q-boxes" class="boxes"></div>
+      <input id="q-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" aria-label="Your answer">
+    </div>
+    <button id="q-check" class="btn">Check</button>
+    <p id="q-feedback" class="feedback"></p>
+    <p class="progress" id="q-progress"></p>
+  </div>
+</section>
+
+<!-- 2. Main page: greeting, gallery, letter -->
+<main id="site" hidden>
+  <header class="hero">
+    <p class="eyebrow">October 20</p>
+    <h1 id="hero-title"></h1>
+    <p id="hero-sub"></p>
+  </header>
+
+  <section class="gallery" id="gallery"></section>
+
+  <section class="letter-section" id="letter-section">
+    <h2>One more thing</h2>
+    <button id="open-letter" class="btn">Open your letter</button>
+    <article id="letter" class="letter" hidden></article>
+  </section>
+
+  <button id="lurker" class="lurker" title="Hm?"><img src="assets/him.png" alt="Peeking face"></button>
+</main>
+
+<!-- Photo viewer -->
+<dialog id="lb">
+  <img id="lb-img" alt="">
+  <p id="lb-note" class="hand"></p>
+  <button id="lb-close" class="btn ghost">Close</button>
+</dialog>
+
+<!-- 3. Mini-game -->
+<div id="game" class="game" hidden>
+  <div class="game-top">
+    <span>Time <b id="g-time">30</b></span>
+    <span>Score <b id="g-score">0</b></span>
+    <button id="g-close" class="link">Close</button>
+  </div>
+  <p id="g-says" class="says"></p>
+  <div id="g-grid" class="grid"></div>
+  <img id="g-her" class="her" alt="">
+  <div id="g-modal" class="game-modal">
+    <div class="card">
+      <h2 id="g-title"></h2>
+      <p id="g-text"></p>
+      <p id="g-break" class="small"></p>
+      <button id="g-go" class="btn">Start</button>
+      <button id="g-letter" class="btn ghost" hidden>Go to the letter</button>
+    </div>
+  </div>
+</div>
+
+<!-- Audio controls (always visible) -->
+<div class="audio-ctl">
+  <button id="t-music" class="pill">Music: on</button>
+  <button id="t-sfx" class="pill">Sound: on</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
