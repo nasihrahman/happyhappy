@@ -4,7 +4,7 @@
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Lora,Georgia,serif;line-height:1.6;-webkit-tap-highlight-color:transparent}
 h1,h2{font-weight:500;line-height:1.25;margin:0 0 .6rem}
 .hand{font-family:Caveat,cursive;font-size:1.4rem}
-.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;color:#ebff22;margin:0 0 .8rem}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.75rem;color:#000000;margin:0 0 .8rem}
 
 .btn{font:inherit;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:.7rem 1.6rem;cursor:pointer;touch-action:manipulation}
 .btn.ghost{background:none;color:var(--ink);border:1px solid var(--ink)}
@@ -31,7 +31,7 @@ h1,h2{font-weight:500;line-height:1.25;margin:0 0 .6rem}
 #site{animation:fade .6s}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 .hero{text-align:center;padding:4rem 1.2rem 2rem}
-.hero h1{font-size:clamp(3rem,8vw,3.2rem); color:#ebff22; font-weight:700;}
+.hero h1{font-size:clamp(3.7rem,8vw,3.2rem); color:#ebff22; font-weight:700;}
 .hero p:last-child{color:#ebff22;margin:0}
 
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1.4rem;max-width:900px;margin:0 auto;padding:1rem 1.2rem 3rem}
@@ -76,3 +76,15 @@ dialog::backdrop{background:rgba(40,30,25,.55)}
 .her.hop{transform:translateY(-10px) rotate(-8deg)}
 .game-modal{position:absolute;inset:0;background:rgba(250,246,240,.96);display:flex;align-items:center;justify-content:center;padding:1.2rem}
 .game-modal .btn{margin:.3rem}
+
+.polaroid video,
+#lb video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+#lb video { max-height: 70vh; object-fit: contain; }
+
+/* the hidden attribute loses to display:block without this */
+#lb img[hidden], #lb video[hidden] { display: none; }

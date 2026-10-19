@@ -12,32 +12,33 @@ const CONFIG = {
   // hint (optional) appears after 3 wrong tries. She only gets in with a correct answer.
   quiz: [
     { q: "Which is the sole metropolitan area in Kerala?", answer: "Vaduvanchal",
-      right: "Correct. Naturally.", wrong: "Wrong. Try again.", hint: "" },
+      wrong: "Wrong. Try again.", hint: "" },
     { q: "Which is the most popular family in Kerala?", answer: "Avinjikkad",
-      right: "Correct. A household name.", wrong: "Wrong. You should know this.", hint: "" },
+      wrong: "Wrong. You should know this.", hint: "" },
     { q: "Who is the most beautiful woman?", answer: "{name}",
-      right: "Correct. Obviously.", wrong: "Wrong. Think again.", hint: "" }
+      wrong: "Wrong. Think again.", hint: "" }
   ],
 
-  hero: { title: "Happy Birthday, {name}"},
+  hero: { title: "Happy Birthday, {name}" },
 
   // Put images in assets/photos/. note = hidden message shown when she taps the photo.
   photos: [
-    { src: "assets/photos/1.jpg", note: "EDIT hidden message" },
-    { src: "assets/photos/2.jpg", note: "EDIT hidden message" },
-    { src: "assets/photos/3.jpg", note: "EDIT hidden message" },
-    { src: "assets/photos/4.jpg", note: "EDIT hidden message" },
-    { src: "assets/photos/5.jpg", note: "EDIT hidden message" },
-    { src: "assets/photos/6.jpg", note: "EDIT hidden message" }
+    { src: "assets/photos/1.png", note: "my fav" },
+    { src: "assets/photos/2.png", note: "the prettiest" },
+    { src: "assets/photos/3.png",  },
+    { src: "assets/photos/4.png", note: "the cutest" },
+    { src: "assets/photos/5.png", note: "ilysm" },
+    
+    { video: "assets/videos/1.mp4", poster: "assets/photos/video-poster.jpg", note: "my fav dancer" }
   ],
 
   letter: {
     paragraphs: [
-      "EDIT: birthday wish.",
-      "EDIT: things I love about you.",
-      "EDIT: a specific memory.",
-      "EDIT: what I wish for you.",
-      "EDIT: closing."
+      "My Dearest Hiba,",
+      "Happiest Birthday to the girl i love the most",
+      "My best day was the day when u told me ily",
+      "My best moments were the those i spent with u",
+      "I love you so much hiba"
     ],
     signoff: "Nasih",
     photo: "assets/photos/letter.jpg"   // set to "" for no final photo
@@ -56,14 +57,14 @@ const CONFIG = {
     //  lines  = said on that target's 1st, 5th, 10th... tap (its own tap count)
     //  win    = shown at the end if this target got the most hits
     targets: [
-      { id: "him", label: "Boyfriend", img: "assets/him.png", hitImg: "assets/him-hit.png", sfx: "assets/audio/him.mp3", points: 1, weight: 2,
-        lines: { 1: "HEY! What did I do?", 5: "Babe, we can talk about this.", 10: "I'm sorry for everything.", 20: "Okay, okay, you win." },
+      { id: "him", label: "Boyfriend", img: "assets/him.png", hitImg: "assets/him-hit.png", sfx: "assets/audio/him.mp3", points: 1, weight: 4,
+        // lines: { 1: "HEY! What did I do?", 5: "Babe, we can talk about this.", 10: "I'm sorry for everything.", 20: "Okay, okay, you win." },
         win: "You've successfully humbled me. Happy Birthday, troublemaker." },
-      { id: "jungkook", label: "Jungkook", img: "assets/jungkook.png", hitImg: "", sfx: "assets/audio/jungkook.mp3", points: 1, weight: 4,
-        lines: { 1: "Jungkook! Good taste.", 5: "Jungkook again?" },
+      { id: "jungkook", label: "Jungkook", img: "assets/jungkook.png", hitImg: "", sfx: "assets/audio/jungkook.mp3", points: 1, weight: 3,
+        // lines: { 1: "Jungkook! Good taste.", 5: "Jungkook again?" },
         win: "Jungkook got more hits than me. Fair." },
       { id: "buldak", label: "Buldak", img: "assets/buldak.png", hitImg: "", sfx: "assets/audio/buldak.mp3", points: 1, weight: 3,
-        lines: { 1: "Buldak! Spicy.", 5: "More Buldak?" },
+        // lines: { 1: "Buldak! Spicy.", 5: "More Buldak?" },
         win: "Buldak beat me. I know my place." }
     ],
     none: "No hits at all. Try again?"
@@ -113,8 +114,7 @@ function check() {
   if (!guess) return;
   if (guess === norm(t(item.answer))) {
     locked = true;
-    $("q-feedback").textContent = t(item.right);
-    setTimeout(() => { qi++; qi < CONFIG.quiz.length ? showQuestion() : enterSite(); }, 1200);
+    setTimeout(() => { qi++; qi < CONFIG.quiz.length ? showQuestion() : enterSite(); }, 350);
     return;
   }
   tries++;
@@ -138,15 +138,40 @@ function enterSite() {
 $("hero-title").textContent = t(CONFIG.hero.title);
 $("hero-sub").textContent = CONFIG.hero.sub;
 
+// plays the gallery videos only while they're on screen (saves battery, autoplay is more reliable)
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause();
+}), { threshold: 0.4 });
+
 CONFIG.photos.forEach(p => {
   const b = el("button", "polaroid");
-  const img = el("img"); img.src = p.src; img.alt = "Photo"; img.loading = "lazy";
-  b.append(img);
-  b.onclick = () => { $("lb-img").src = p.src; $("lb-note").textContent = p.note || ""; $("lb").showModal(); };
+  let media;
+  if (p.video) {
+    media = el("video");
+    media.src = p.video;
+    if (p.poster) media.poster = p.poster;
+    media.muted = true; media.loop = true; media.autoplay = true; media.playsInline = true;
+    media.setAttribute("muted", "");        // iOS needs the attribute, not only the property
+    media.preload = "metadata";
+    io.observe(media);
+  } else {
+    media = el("img"); media.src = p.src; media.alt = "Photo"; media.loading = "lazy";
+  }
+  b.append(media);
+  b.onclick = () => {
+    const isVid = !!p.video;
+    $("lb-img").hidden = isVid;
+    $("lb-video").hidden = !isVid;
+    if (isVid) { $("lb-video").src = p.video; $("lb-video").play().catch(() => {}); }
+    else $("lb-img").src = p.src;
+    $("lb-note").textContent = p.note || "";
+    $("lb").showModal();
+  };
   $("gallery").append(b);
 });
 $("lb-close").onclick = () => $("lb").close();
 $("lb").onclick = e => { if (e.target === $("lb")) $("lb").close(); };
+$("lb").onclose = () => { const v = $("lb-video"); v.pause(); v.removeAttribute("src"); v.load(); };
 
 /* ---------- Letter ---------- */
 const L = CONFIG.letter;
