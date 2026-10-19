@@ -26,7 +26,7 @@ const CONFIG = {
     { src: "assets/photos/7.jpeg", note: "the smartest" },
     { src: "assets/photos/2.png", note: "the prettiest" },
     { src: "assets/photos/3.png", note: "the funniest" },
-    { src: "assets/photos/4.png", note: "my fav girl in world" },
+    { src: "assets/photos/4.png", note: "my fav" },
     { src: "assets/photos/1.png", note: "ilysm" },
     
     { video: "assets/videos/1.mp4", poster: "assets/photos/video-poster.jpg", note: "my fav dancer" }
