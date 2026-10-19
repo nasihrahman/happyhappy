@@ -23,11 +23,11 @@ const CONFIG = {
 
   // Put images in assets/photos/. note = hidden message shown when she taps the photo.
   photos: [
-    { src: "assets/photos/1.png", note: "my fav" },
+    { src: "assets/photos/7.jpeg", note: "the smartest" },
     { src: "assets/photos/2.png", note: "the prettiest" },
-    { src: "assets/photos/3.png",  },
-    { src: "assets/photos/4.png", note: "the cutest" },
-    { src: "assets/photos/5.png", note: "ilysm" },
+    { src: "assets/photos/3.png", note: "the funniest" },
+    { src: "assets/photos/4.png", note: "my fav girl in world" },
+    { src: "assets/photos/1.png", note: "ilysm" },
     
     { video: "assets/videos/1.mp4", poster: "assets/photos/video-poster.jpg", note: "my fav dancer" }
   ],
@@ -36,9 +36,10 @@ const CONFIG = {
     paragraphs: [
       "My Dearest Hiba,",
       "Happiest Birthday to the girl i love the most",
-      "My best day was the day when u told me ily",
+      // "My best day was the day when u told me ily",
       "My best moments were the those i spent with u",
-      "I love you so much hiba"
+      "we mightve had kunji fights but we r perfect", 
+      "i love you more than anything"
     ],
     signoff: "Nasih",
     photo: "assets/photos/letter.jpg"   // set to "" for no final photo
