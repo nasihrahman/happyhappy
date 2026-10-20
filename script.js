@@ -11,12 +11,12 @@ const CONFIG = {
   // Capitals and spaces don't matter, spelling does. {name} = her name.
   // hint (optional) appears after 3 wrong tries. She only gets in with a correct answer.
   quiz: [
-    { q: "Which is the sole metropolitan area in Kerala?", answer: "Vaduvanchal",
+    { q: "Which is the sole metropolitan area in Kerala?", answer: "vdvl",
       wrong: "Wrong. Try again.", hint: "" },
-    { q: "Which is the most popular family in Kerala?", answer: "Avinjikkad",
-      wrong: "Wrong. You should know this.", hint: "" },
-    { q: "Who is the most beautiful woman?", answer: "{name}",
-      wrong: "Wrong. Think again.", hint: "" }
+    // { q: "Which is the most popular family in Kerala?", answer: "Avinjikkad",
+    //   wrong: "Wrong. You should know this.", hint: "" },
+    // { q: "Who is the most beautiful woman?", answer: "{name}",
+    //   wrong: "Wrong. Think again.", hint: "" }
   ],
 
   hero: { title: "Happy Birthday, {name}" },
