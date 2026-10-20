@@ -58,10 +58,10 @@ const CONFIG = {
     //  lines  = said on that target's 1st, 5th, 10th... tap (its own tap count)
     //  win    = shown at the end if this target got the most hits
     targets: [
-      { id: "him", label: "Boyfriend", img: "assets/him.png", hitImg: "assets/him-hit.png", sfx: "assets/audio/him.mp3", points: 1, weight: 4,
+      { id: "him", label: "Boyfriend", img: "assets/him.png", hitImg: "assets/him-hit.png", sfx: "assets/audio/him.mp3", points: 1, weight: 2,
         // lines: { 1: "HEY! What did I do?", 5: "Babe, we can talk about this.", 10: "I'm sorry for everything.", 20: "Okay, okay, you win." },
         win: "You've successfully humbled me. Happy Birthday, troublemaker." },
-      { id: "jungkook", label: "Jungkook", img: "assets/jungkook.png", hitImg: "", sfx: "assets/audio/jungkook.mp3", points: 1, weight: 3,
+      { id: "jungkook", label: "Jungkook", img: "assets/jungkook.png", hitImg: "", sfx: "assets/audio/jungkook.mp3", points: 1, weight: 4,
         // lines: { 1: "Jungkook! Good taste.", 5: "Jungkook again?" },
         win: "Jungkook got more hits than me. Fair." },
       { id: "buldak", label: "Buldak", img: "assets/buldak.png", hitImg: "", sfx: "assets/audio/buldak.mp3", points: 1, weight: 3,
